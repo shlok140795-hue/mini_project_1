@@ -1,0 +1,170 @@
+﻿Mini Project Assessment 
+Business Case 
+You are working as a Data Engineer for QuickCart, a rapidly growing e-commerce and logistics  platform. 
+The company currently faces: 
+- Slow dashboard performance 
+- Duplicate customer records 
+- Delayed reporting 
+- Pipeline failures 
+- High storage costs 
+- Difficulty processing clickstream logs 
+- Poor query performance on large datasets 
+The organization wants to build a scalable modern data platform using: Python, SQL, Pandas, , Airflow and modern  ETL/ELT architecture. 
+
+
+Expected Deliverables 
+Students must submit: 
+1.SQL scripts (.sql) 
+2. Python notebooks/scripts (.py /.ipynb) 
+3. Airflow DAG (files/scripts) 
+4.Architecture diagram (word file/paint/onenote etc.) 
+
+
+DATASETS PROVIDED 
+1. customers.csv 
+customer_id 
+customer_name 
+email 
+city 
+signup_date 
+2. orders.csv 
+order_id 
+customer_id 
+product_id 
+order_date 
+quantity 
+unit_price 
+payment_status 
+3. products.csv 
+product_id 
+product_name 
+category 
+supplier_id 
+cost_price 
+selling_price 
+4. clickstream.csv 
+event_id 
+customer_id 
+event_type 
+page_url 
+event_timestamp 
+device_type 
+Dataset : given on the drive in a zipped folder
+ 
+Section A - Data Engineering Theory 
+Q1. OLTP vs OLAP Architecture 
+The company currently stores transactional and analytical workloads in the same SQL  database. 
+Tasks
+1. Explain why this creates performance issues.  
+2. Compare OLTP and OLAP workloads.   
+3. Suggest an improved architecture.  
+4. Explain where:  
+-PostgreSQL /SQLServer/MySql
+-Data warehouse  
+-Data lake 
+should be used.  
+Q2. ACID vs BASE in Distributed Systems 
+QuickCart wants to store clickstream events from millions of users. Tasks 
+1. Explain why BASE systems are preferred for clickstream systems.  2. Which workloads require ACID compliance?  
+3. Give examples where eventual consistency is acceptable.  
+Q3. Storage Formats & Querying 
+Tasks 
+1. Compare:  
+ -CSV  
+ -JSON  
+ -Avro  
+ -Parquet  
+2. Why do analytical systems prefer columnar storage?  3. Explain avro vs json format.
+4. Explain compression benefits in Parquet.  
+Q4. Partitioning, Indexing 
+Tasks 
+1. Design a partitioning strategy for:  
+ -orders table  
+                -clickstream data 
+2. Suggest indexing strategy for: 
+ -customer lookups 
+ -order filtering  
+ -joins  
+3. Explain when indexes negatively affect performance.  
+Section B - SQL Engineering 
+Q1. Intermediate SQL Queries 
+Write SQL queries to: 
+1. Find top 10 customers by revenue.  
+2. Find month-over-month sales growth. 
+3. Find customers who ordered in consecutive months.  4. Find products never ordered.  
+5. Find revenue contribution percentage by category.  
+Q2. Advanced SQL  
+Tasks 
+1. Rank customers based on total revenue.  
+2. Find running total sales by month.
+3. Find the highest selling product per category.  
+4. Find 7-day rolling average sales.  
+Q3. SQL Optimization Scenario 
+The following query takes 18 minutes: 
+SELECT c.customer_name, 
+ SUM(o.quantity * o.unit_price) 
+FROM orders o 
+JOIN customers c 
+ON o.customer_id = c.customer_id
+WHERE order_date >= '2025-01-01' 
+GROUP BY c.customer_name; 
+Tasks 
+1. Identify possible bottlenecks.  
+2. Suggest indexes.  
+3. Explain execution plan analysis.  
+
+
+Q4. Database Design 
+Design schema for: 
+1. Shipment tracking  
+2. Product inventory  
+3. Customer support tickets  
+Requirements: 
+• normalized design  
+• primary keys  
+• foreign keys  
+• indexing recommendations  
+Section C - Python + Pandas Engineering 
+Q1. Data Ingestion Pipeline 
+Using Python and Pandas: 
+Tasks 
+1. Read all datasets.  
+2. Validate schema consistency.  
+3. Detect duplicate customers. 
+4. Identify invalid records.  
+Q2. Data Cleaning & Transformation 
+Tasks 
+1. Standardize city names. (if any)  
+2. Convert timestamps correctly.  (if any)
+3. Handle missing values.  (if any)
+4. Remove corrupted rows.  
+Q3. Clickstream Analytics 
+Using clickstream data: 
+Tasks 
+1. Find the most visited pages.  
+2. Calculate session counts.  
+3. Find mobile vs desktop traffic percentage.  
+
+
+Section D - ETL/ELT + Airflow 
+
+
+Q1. ETL vs ELT Architecture 
+Tasks 
+1. Compare ETL vs ELT.  
+2. Explain why cloud warehouses prefer ELT.  3. Design modern ELT pipeline for QuickCart.  
+Q2. Airflow DAG Development 
+Create an Airflow DAG that: 
+Requirements 
+1. Runs daily at 2 AM  
+2. Extracts CSV files  
+3. Performs validation  
+4. Loads raw data into staging tables  5. Triggers transformation step  
+6. Sends failure email alerts  
+DAG must include: 
+• retries  
+• retry delays  
+• task dependencies  
+• logging  
+• scheduling  
+• sensors

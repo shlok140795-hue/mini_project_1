@@ -1,0 +1,6 @@
+
+pandas
+sqlalchemy
+apache-airflow-providers-postgres
+apache-airflow-providers-standard
+apache-airflow-providers-smtp
